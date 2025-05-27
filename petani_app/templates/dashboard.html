@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #38ada9, #079992);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 20px 0 10px;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    p.sub {
+      margin: 0 0 30px;
+      font-weight: 400;
+      color: #f5f5f5cc;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .date {
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+      color: #ffffffcc;
+    }
+
+    .svg-container {
+      max-width: 180px;
+      margin-bottom: 25px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      min-width: 160px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    a.button:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: auto;
+      font-size: 0.85rem;
+      color: #eeeeeeaa;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 480px) {
+      a.button {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="svg-container">
+    <svg width="100%" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4" fill="none"/>
+      <path d="M20 40L32 24L44 40" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <h1>Selamat datang, {{ username }}</h1>
+  <p class="sub">Kelola data petani, komoditas, dan hasil panen dengan mudah.</p>
+  <div class="date">Hari ini: {{ tanggal }}</div>
+
+  <nav>
+    <a href="{{ url_for('form_petani') }}" class="button">Tambah Data Petani</a>
+    <a href="{{ url_for('riwayat_petani') }}" class="button">Riwayat Data Petani</a>
+    <a href="{{ url_for('isi_komoditas') }}" class="button">Isi Komoditas</a>
+    <a href="{{ url_for('riwayat_komoditas') }}" class="button">Riwayat Komoditas</a>
+    <a href="{{ url_for('isi_hasil_panen') }}" class="button">Isi Hasil Panen</a>
+    <a href="{{ url_for('riwayat_hasil_panen') }}" class="button">Riwayat Hasil Panen</a>
+    <a href="{{ url_for('logout') }}" class="button">Logout</a>
+  </nav>
+
+  <footer>
+    &copy; 2025 Aplikasi Petani. Dibuat untuk menuntaskan tugas GIS.
+  </footer>
+
+</body>
+</html>
