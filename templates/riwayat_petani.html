@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Data Petani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #17a2b8, #11998e);
+      color: #212529;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #17a2b8;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #17a2b8;
+    }
+
+    .btn-primary:hover {
+      background-color: #138496;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+
+    .alert {
+      padding: 12px 16px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .alert-info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f1f3f5;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      table, th, td {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Riwayat Pengisian Data</h2>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Kembali ke Dashboard</a>
+
+    {% if petani %}
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>NIK</th>
+            <th>Tanggal Lahir</th>
+            <th>Telepon</th>
+            <th>Alamat</th>
+            <th>Luas Lahan (m²)</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in petani %}
+          <tr>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td>{{ p[4] }}</td>
+            <td>{{ p[5] }}</td>
+            <td>{{ p[6] }}</td>
+            <td>
+              <a href="{{ url_for('edit_petani', id=p[0]) }}" class="btn btn-primary btn-sm">Edit</a>
+              <a href="{{ url_for('hapus_petani', id=p[0]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+      Belum ada data petani yang diisi.
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
